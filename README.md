@@ -10,14 +10,14 @@ Creation Steps
 
 1.Create ZF2 project from skeleton using composer
 
-```
+```bash
 curl -s https://getcomposer.org/installer | php --
 php composer.phar create-project -sdev --repository-url="http://packages.zendframework.com" zendframework/skeleton-application zf2-example-doctrine2
 ```
 
 2.Update composer.json to require Doctrine 2
 
-```
+```bash
 php composer.phar self-update
 php composer.phar require doctrine/doctrine-module:dev-master
 php composer.phar require doctrine/doctrine-orm-module:dev-master
@@ -25,19 +25,19 @@ php composer.phar require doctrine/doctrine-orm-module:dev-master
 
 3.Install ZF Dev tools
 
-```
+```bash
 php composer.phar require zendframework/zend-developer-tools:dev-master
 ```
 
 4.Copy ZF Dev tools autoload config to application config and add modules
 
-```
+```bash
 cp vendor/zendframework/zend-developer-tools/config/zenddevelopertools.local.php.dist config/autoload/zdt.local.php
 ```
 
 Edit config/application.config.php:
 
-```
+```php
 ...
 'modules' => array(
     'ZendDeveloperTools',
@@ -52,7 +52,7 @@ Edit config/application.config.php:
 
 New file module/Application/src/Application/Entity/User.php:
 
-```
+```php
 <?php
 
 namespace Application\Entity;
@@ -90,7 +90,7 @@ class User {
 
 Edit config/module.config.php:
 
-```
+```php
 return array(
     'doctrine' => array(
         'driver' => array(
@@ -116,7 +116,7 @@ You should now see the new entity in the ZF2 Dev tool bar in the doctrine sectio
 
 New file local.php:
 
-```
+```php
 <?php
 
 return array(
@@ -125,7 +125,7 @@ return array(
 
 New file config/autoload/doctrine.local.php (for local MySql):
 
-```
+```php
 <?php
 
 return array(
@@ -144,7 +144,7 @@ return array(
 
 8.Validate the schema against the current DB (will fail since you haven't got any schema)
 
-```
+```bash
 ./vendor/bin/doctrine-module orm:validate-schema
 ```
 
@@ -152,7 +152,7 @@ return array(
 
 This will apply the ORM generated schema to the DB
 
-```
+```bash
 ./vendor/bin/doctrine-module orm:schema-tool:create
 ```
 
@@ -160,7 +160,7 @@ This will apply the ORM generated schema to the DB
 
 Edit module/Application/config/module.config.php:
 
-```
+```php
 ...
 'user' => array(
     'type'    => 'segment',
@@ -183,7 +183,7 @@ Edit module/Application/config/module.config.php:
 
 Edit module/Application/src/Application/Controller/IndexController.php:
 
-```
+```php
 <?php
 
 namespace Application\Controller;
@@ -265,7 +265,7 @@ class IndexController extends AbstractActionController
 
 Edit module/Application/view/application/index/index.phtml:
 
-```
+```php
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -307,7 +307,7 @@ Edit module/Application/view/application/index/index.phtml:
 
 Edit module/Application/view/application/index/add.phtml:
 
-```
+```php
 <?php
 
 $title = 'Add new User';
@@ -321,7 +321,7 @@ $this->headTitle($title);
 ```
 Edit module/Application/view/application/index/edit.phtml:
 
-```
+```php
 <?php
 
 $title = 'Edit User';
@@ -335,7 +335,7 @@ $this->headTitle($title);
 ```
 Edit module/Application/view/application/index/delete.phtml:
 
-```
+```php
 <?php
 
 $title = 'Delete User';
